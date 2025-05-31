@@ -2,6 +2,11 @@
 import React, { useState, useEffect } from 'react';
 import './App.css'; // Add styles as needed
 
+// 環境変数を読み込む（Viteのimport.meta.envを使用）
+// 開発時にはViteプロキシがパスを書き換えるため空文字でOK。
+// ビルド時にはVITE_API_BASE_URLが実際のバックエンドURLになる。
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
+
 function App() {
   // State management using useState hooks
   const [sessionId, setSessionId] = useState('');
@@ -30,7 +35,8 @@ function App() {
 
     try {
       // Request to the backend API
-      const response = await fetch('/api/interview', {
+      // API_BASE_URL をプレフィックスとして追加
+      const response = await fetch(`${API_BASE_URL}/api/interview`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -47,7 +53,8 @@ function App() {
           text: item.text // This should now correctly receive text from backend
         })));
       } else {
-        alert(`Error: ${data.error}`);
+        // data.error が存在しない場合も考慮
+        alert(`Error: ${data.error || 'Unknown error occurred'}`);
       }
     } catch (error) {
       console.error('Interview start error:', error);
@@ -70,7 +77,8 @@ function App() {
 
     try {
       // Request to the backend API
-      const response = await fetch('/api/interview', {
+      // API_BASE_URL をプレフィックスとして追加
+      const response = await fetch(`${API_BASE_URL}/api/interview`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -88,7 +96,8 @@ function App() {
         })));
         setUserResponse(''); // Clear the response input field
       } else {
-        alert(`Error: ${data.error}`);
+        // data.error が存在しない場合も考慮
+        alert(`Error: ${data.error || 'Unknown error occurred'}`);
       }
     } catch (error) {
       console.error('Response submission error:', error);
