@@ -30,7 +30,7 @@ function App() {
 
     try {
       // Request to the backend API
-      const response = await fetch('/interview', {
+      const response = await fetch('/api/interview', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -70,7 +70,7 @@ function App() {
 
     try {
       // Request to the backend API
-      const response = await fetch('/interview', {
+      const response = await fetch('/api/interview', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
