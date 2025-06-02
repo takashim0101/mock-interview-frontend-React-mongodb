@@ -2,10 +2,12 @@
 import React, { useState, useEffect } from 'react';
 import './App.css'; // Add styles as needed
 
-// 環境変数を読み込む（Viteのimport.meta.envを使用）
-// 開発時にはViteプロキシがパスを書き換えるため空文字でOK。
-// ビルド時にはVITE_API_BASE_URLが実際のバックエンドURLになる。
+// React (Create React App) 方式の環境変数読み込みに合わせる
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
+// If you are using an older version of React or in a non-Vite environment, 
+// it may be process.env.REACT_APP_BACKEND_URL,
+// but if you are using a Vite environment that can use import.meta.env,
+// this format should work with Vercel.
 
 function App() {
   // State management using useState hooks
